@@ -112,14 +112,15 @@ That's still pretty terrible looking. We want to do something like this:
 
 Let's clean our plot up with code options from ggplot. Run the code below in stages: After `geom_bar()`, highlight one additional row every time you rune the code to watch what happens. 
 
-```{r bars cleaning up}
+```{r fig.height = 5, fig.width = 10}
 ggplot(pew, aes(x = fct_infreq(RELTRAD2))) + 
-  geom_bar() + 
-  coord_flip() + 
+  geom_bar() +
+  coord_flip() +
+  geom_text(stat='count', aes(label=..count..), hjust=-0.1, size=3) +
   theme_minimal() + 
   labs(y="Number of Respondents", x="") + 
-  ggtitle( "Prevalence of Religions in the United States", subtitle = "Source: Pew Religion Survey, 2014") + 
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+  ggtitle( "Prevalence of Religions in the United States", subtitle = "Source: Pew Religion Survey, 2014") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_blank())
 ```
 
 Better! Let's try another one. We know now that we'll need to do some mutating in order to take a look at the relationship between age and ideology in the survey: 
